@@ -87,4 +87,8 @@
             </div>
         </div>
     </div>
+
+   {{--@foreach($cities as $city)
+      <p>ID = {{$city -> id}}, name = {{$city -> cityName}}</p> 
+   @endforeach--}}
 </div>
