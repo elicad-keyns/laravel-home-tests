@@ -80,11 +80,7 @@
 		  <!-- city  -->
         <div class="col-span-6 sm:col-span-4">
 			<x-jet-label for="city" value="{{ __('City') }}" />
-			<select name="city" class="form-select rounded-md shadow-sm mt-1 block w-full" id="sub_category">
-            {{--@foreach($cities as $city)
-               <option value="{{$city -> secondaryRelation}}">{{$city -> name}}</option> 
-            @endforeach--}}
-			</select>
+			<select name="city" class="form-select rounded-md shadow-sm mt-1 block w-full" id="sub_category"></select>
 			<x-jet-input-error for="city" class="mt-2" />
 	  </div>
     </x-slot>
