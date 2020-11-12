@@ -14,7 +14,8 @@ class AddRelationToCity extends Migration
     public function up()
     {
       Schema::table('cities', function (Blueprint $table) {
-         $table->text('secondaryRelation')->after('cityName');
+         $table->text('secondaryRelation')
+               ->after('name');
      });
     }
 

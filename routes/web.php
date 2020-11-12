@@ -25,3 +25,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::get('user/profile', 'Laravel\Jetstream\Http\Controllers\Livewire\UserProfileController@show')->name('profile.show');
+
+Route::get('getedit/{id}', 'App\Http\Controllers\WhereFromController@GetSubCatAgainstMainCatEdit');

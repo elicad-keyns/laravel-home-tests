@@ -68,21 +68,22 @@
         <!-- country  -->
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="country" value="{{ __('Country') }}" />
-            <select name="country" class="form-select rounded-md shadow-sm mt-1 block w-full" id="country">
+            <select name="country" class="form-select rounded-md shadow-sm mt-1 block w-full select-country" id="sub_category_name">
+               <option value="0" disabled selected>Choose your country</option>
                @foreach($countries as $country)
-                  <option value="{{$country -> mainRelation}}">{{$country -> countryName}}</option> 
+                  <option value="{{$country -> mainRelation}}">{{ ucfirst($country -> name)}}</option> 
                @endforeach
-				</select>
+            </select>
             <x-jet-input-error for="country" class="mt-2" />
 		  </div>
 
 		  <!-- city  -->
         <div class="col-span-6 sm:col-span-4">
 			<x-jet-label for="city" value="{{ __('City') }}" />
-			<select name="city" class="form-select rounded-md shadow-sm mt-1 block w-full" id="">
-            @foreach($cities as $city)
-               <option value="{{$city -> secondaryRelation}}">{{$city -> cityName}}</option> 
-            @endforeach
+			<select name="city" class="form-select rounded-md shadow-sm mt-1 block w-full" id="sub_category">
+            {{--@foreach($cities as $city)
+               <option value="{{$city -> secondaryRelation}}">{{$city -> name}}</option> 
+            @endforeach--}}
 			</select>
 			<x-jet-input-error for="city" class="mt-2" />
 	  </div>
@@ -98,3 +99,31 @@
         </x-jet-button>
     </x-slot>
 </x-jet-form-section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" 
+        integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" 
+        crossorigin="anonymous"></script>
+<script>
+$(document).ready(function () {
+   $('#sub_category_name').on('change', function () {
+      let id = $(this).val();
+      $('#sub_category').empty();
+      $('#sub_category').append(`<option value="0" disabled selected>Processing...</option>`);
+      console.log('before, id = ', id);
+      $.ajax({
+            type: 'GET',
+            url: '/getedit/' + id,
+            dataType: "json",
+            success: function (response) {
+               console.log('test things');
+               console.log(response, '123');
+               $('select[name="city"]').empty();
+               $('#sub_category').append(`<option value="0" disabled selected>Choose your city</option>`);
+               $.each(response, function(key, value){
+                  $('select[name="city"]').append('<option value="'+ value.secondaryRelation +'">' + value.name + '</option>');
+               });
+            }
+      });
+   });
+});
+</script>

@@ -15,7 +15,7 @@ class AddRelationToCoutry extends Migration
     {
         Schema::table('countries', function (Blueprint $table) {
             $table->text('mainRelation')
-                  ->after('countryName')
+                  ->after('name')
                   ->unique();
         });
     }

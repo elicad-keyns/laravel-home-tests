@@ -21,6 +21,7 @@
         </style>
     </head>
     <body class="antialiased">
+      
          {{--@foreach($cities as $city)
     <p>ID = {{$city -> id}}, name = {{$city -> cityName}}</p> 
          @endforeach--}}
@@ -133,4 +134,12 @@
             </div>
         </div>
     </body>
+    <script src="{{ asset('js/app.js') }}"></script>
 </html>
+{{--let pup
+
+$.ajax({
+   url: "localhos/usr/info",
+ }).done(function(res) {
+   pup = res.SJON
+ });--}}
