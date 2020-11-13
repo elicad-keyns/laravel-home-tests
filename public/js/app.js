@@ -19334,6 +19334,36 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./resources/js/ajax.js":
+/*!******************************!*\
+  !*** ./resources/js/ajax.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// ajax city selection on user profile
+$(document).ready(function () {
+  $('#sub_category_name').on('change', function () {
+    var id = $(this).val();
+    $('#sub_category').empty();
+    $('#sub_category').append("<option value=\"0\" disabled selected>Processing...</option>");
+    $.ajax({
+      type: 'GET',
+      url: '/getedit/' + id,
+      dataType: "json",
+      success: function success(response) {
+        $('select[name="city"]').empty();
+        $('#sub_category').append("<option value=\"0\" disabled selected>Choose your city</option>");
+        $.each(response, function (key, value) {
+          $('select[name="city"]').append('<option value="' + value.secondaryRelation + '">' + value.name + '</option>');
+        });
+      }
+    });
+  });
+});
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -19343,7 +19373,7 @@ module.exports = function(module) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-__webpack_require__(/*! ./custom */ "./resources/js/custom.js");
+__webpack_require__(/*! ./ajax */ "./resources/js/ajax.js");
 
 /***/ }),
 
@@ -19376,21 +19406,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
-
-/***/ }),
-
-/***/ "./resources/js/custom.js":
-/*!********************************!*\
-  !*** ./resources/js/custom.js ***!
-  \********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-console.log('123');
-
-if (typeof jQuery != 'undefined') {
-  alert(jQuery.fn.jquery);
-}
 
 /***/ }),
 

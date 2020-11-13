@@ -136,10 +136,3 @@
     </body>
     <script src="{{ asset('js/app.js') }}"></script>
 </html>
-{{--let pup
-
-$.ajax({
-   url: "localhos/usr/info",
- }).done(function(res) {
-   pup = res.SJON
- });--}}
